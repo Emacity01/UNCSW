@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>EMACITY MUN - UNCSW</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    color: white;
+    overflow: hidden;
+    background: black;
+}
+
+/* BACKGROUND */
+.bg {
+    position: fixed;
+    width: 110%;
+    height: 110%;
+    top: 0;
+    left: 0;
+    background:
+        linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(0,0,0,0.92)),
+        url("https://images.unsplash.com/photo-1509099836639-18ba1795216d")
+        no-repeat center center;
+    background-size: cover;
+    z-index: -2;
+    animation: bgZoom 18s infinite alternate ease-in-out;
+}
+
+@keyframes bgZoom{
+    from{transform:scale(1)}
+    to{transform:scale(1.06)}
+}
+
+/* HEADER */
+.main-heading{
+    text-align:center;
+    margin-top:18px;
+    font-size:26px;
+    letter-spacing:3px;
+    font-weight:700;
+    color:#ffffff;
+}
+
+.sub-heading{
+    text-align:center;
+    font-size:13px;
+    color:#ff4d4d;
+    letter-spacing:2px;
+    margin-top:5px;
+}
+
+/* CLOCK */
+.clock {
+    position: absolute;
+    top: 15px;
+    left: 25px;
+}
+
+/* BRAND */
+.brand {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    padding: 6px 14px;
+    border: 1px solid #ff3b3b;
+    border-radius: 20px;
+    background: rgba(255,0,0,0.12);
+    backdrop-filter: blur(10px);
+}
+
+/* FULLSCREEN */
+.fs-btn{
+    position:absolute;
+    top:70px;
+    left:25px;
+    padding:8px 14px;
+    background:rgba(255,0,0,0.2);
+    border:1px solid #ff3b3b;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+/* LOGIN */
+.login-box{
+    width:360px;
+    margin:120px auto;
+    padding:30px;
+    background:rgba(255,255,255,0.06);
+    backdrop-filter: blur(18px);
+    border-radius:16px;
+    text-align:center;
+    border:1px solid rgba(255,0,0,0.3);
+    animation: reveal 0.8s ease;
+}
+
+@keyframes reveal{
+    from{opacity:0;transform:translateY(30px) scale(0.9)}
+    to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+input{
+    width:85%;
+    padding:12px;
+    margin:8px 0;
+    border-radius:8px;
+    border:none;
+    background:rgba(0,0,0,0.4);
+    color:white;
+}
+
+button{
+    padding:10px 20px;
+    border:none;
+    background:linear-gradient(45deg,#ff2d2d,#8b0000);
+    color:white;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+/* =========================
+   🔥 UPDATED PORTFOLIO BOX
+   ========================= */
+
+.profile {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    width: 520px;   /* BIGGER */
+    padding: 40px;
+
+    background:rgba(255,255,255,0.06);
+    backdrop-filter: blur(18px);
+    border-radius: 18px;
+    text-align: center;
+
+    border: 1px solid rgba(255,0,0,0.3);
+    box-shadow: 0 0 40px rgba(255,0,0,0.25);
+
+    animation: popCenter 0.8s ease;
+}
+
+/* BIG TITLE */
+.profile h2{
+    font-size: 26px;
+    color:#ff3b3b;
+    margin-bottom:20px;
+}
+
+/* BIG TEXT */
+.profile p{
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+/* CENTER REVEAL */
+@keyframes popCenter{
+    from{
+        opacity:0;
+        transform:translate(-50%, -60%) scale(0.8);
+    }
+    to{
+        opacity:1;
+        transform:translate(-50%, -50%) scale(1);
+    }
+}
+
+/* TICKER */
+.ticker {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    background: rgba(0,0,0,0.6);
+    border-top:1px solid rgba(255,0,0,0.3);
+}
+
+.ticker span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: scroll 18s linear infinite;
+    color:#ff4d4d;
+    font-size:13px;
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+/* CONFETTI */
+.confetti {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: red;
+    top: 0;
+    animation: fall 1.5s linear forwards;
+    z-index: 999;
+}
+
+@keyframes fall {
+    0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<div class="clock" id="clock"></div>
+<div class="brand">UNCSW • EMACITY</div>
+
+<div class="main-heading">EMACITY MODEL UNITED NATIONS</div>
+<div class="sub-heading">UNITED NATIONS COMMISSION ON THE STATUS OF WOMEN</div>
+
+<button class="fs-btn" onclick="toggleFullscreen()">⛶ Fullscreen</button>
+
+<!-- LOGIN -->
+<div class="login-box" id="loginBox">
+    <h2 style="color:#ff3b3b">Delegate Login</h2>
+    <input type="text" id="delegateID" placeholder="Enter Delegate ID">
+    <button onclick="login()">Enter Portal</button>
+    <p id="error" style="color:#ff4d4d;"></p>
+</div>
+
+<!-- PROFILE -->
+<div class="profile" id="profile">
+    <h2>Delegate Portfolio</h2>
+    <p>Name: <span id="name"></span></p>
+    <p>Country: <span id="country"></span></p>
+    <p>Committee: UNCSW</p>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+<span>
+Breaking: Women empowerment initiatives discussed • Diplomatic consensus building • EMACITY MUN live session • Respectful debate encouraged • Global cooperation strengthening •
+</span>
+</div>
+
+<script>
+
+/* CLOCK */
+setInterval(()=>{
+document.getElementById("clock").innerText =
+new Date().toLocaleTimeString();
+},1000);
+
+/* FULLSCREEN */
+function toggleFullscreen(){
+if(!document.fullscreenElement){
+document.documentElement.requestFullscreen();
+}else{
+document.exitFullscreen();
+}
+}
+
+/* DELEGATES */
+let delegates={
+"CSW101":{name:"Riya Jawale",country:"Japan"},
+"CSW102":{name:"Vidual Kanade",country:"USA"},
+"CSW103":{name:"Aashi Agarwal",country:"UK"},
+"CSW104":{name:"Aditi Sharma",country:"Australia"}
+};
+
+/* CONFETTI */
+function launchConfetti(){
+for(let i=0;i<40;i++){
+let c=document.createElement("div");
+c.className="confetti";
+c.style.left=Math.random()*100+"vw";
+c.style.background=["#ff3b3b","#ffffff","#ff0000"][Math.floor(Math.random()*3)];
+c.style.animationDuration=(1+Math.random()*1.5)+"s";
+document.body.appendChild(c);
+
+setTimeout(()=>c.remove(),2000);
+}
+}
+
+/* LOGIN */
+function login(){
+let id = delegateID.value.trim();
+
+if(delegates[id]){
+loginBox.style.display="none";
+profile.style.display="block";
+
+document.getElementById("name").innerText = delegates[id].name;
+document.getElementById("country").innerText = delegates[id].country;
+
+/* 🎉 CONFETTI BURST */
+launchConfetti();
+
+}else{
+error.innerText="Invalid Delegate ID";
+}
+}
+</script>
+
+</body>
+</html>
