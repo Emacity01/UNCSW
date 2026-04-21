@@ -236,7 +236,7 @@ button{
 <div class="profile" id="profile">
     <h2>Delegate Portfolio</h2>
     <p>Name: <span id="name"></span></p>
-    <p>Country: <span id="country"></span></p>
+    <p id="countryLine">Country: <span id="country"></span></p>
     <p>Committee: UNCSW</p>
 </div>
 
@@ -305,22 +305,34 @@ setTimeout(()=>c.remove(),2000);
 }
 }
 
-/* LOGIN */
+/* LOGIN - FIXED FOR EXECUTIVE BOARD */
 function login(){
-let id = delegateID.value.trim();
+let id = document.getElementById("delegateID").value.trim();
 
 if(delegates[id]){
-loginBox.style.display="none";
-profile.style.display="block";
+    document.getElementById("loginBox").style.display="none";
+    document.getElementById("profile").style.display="block";
 
-document.getElementById("name").innerText = delegates[id].name;
-document.getElementById("country").innerText = delegates[id].country;
+    let delegate = delegates[id];
+    document.getElementById("name").innerText = delegate.name;
 
-/* 🎉 CONFETTI BURST */
-launchConfetti();
+    // Check if Executive Board (has position) or Delegate (has country)
+    let countryLine = document.getElementById("countryLine");
+    let countrySpan = document.getElementById("country");
+    
+    if(delegate.position){
+        // Executive Board
+        countryLine.innerHTML = 'Position: <span id="country" style="color:#ff4444; font-weight:bold; font-size:1.2em;">' + delegate.position + '</span>';
+    } else {
+        // Regular Delegate
+        countryLine.innerHTML = 'Country: <span id="country">' + delegate.country + '</span>';
+    }
+
+    /* 🎉 CONFETTI BURST */
+    launchConfetti();
 
 }else{
-error.innerText="Invalid Delegate ID";
+    document.getElementById("error").innerText="Invalid Delegate ID";
 }
 }
 </script>
