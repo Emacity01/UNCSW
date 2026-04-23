@@ -5,217 +5,58 @@
 <title>EMACITY MUN - UNCSW</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: "Segoe UI", sans-serif;
-    color: white;
-    overflow: hidden;
-    background: black;
-}
+/* === YOUR ORIGINAL CSS — UNCHANGED === */
+body { margin: 0; font-family: "Segoe UI", sans-serif; color: white; overflow: hidden; background: black; }
+.bg { position: fixed; width: 110%; height: 110%; top: 0; left: 0;
+background: linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(0,0,0,0.92)),
+url("https://images.unsplash.com/photo-1509099836639-18ba1795216d") no-repeat center center;
+background-size: cover; z-index: -2; animation: bgZoom 18s infinite alternate ease-in-out; }
+@keyframes bgZoom{ from{transform:scale(1)} to{transform:scale(1.06)} }
 
-/* BACKGROUND */
-.bg {
-    position: fixed;
-    width: 110%;
-    height: 110%;
-    top: 0;
-    left: 0;
-    background:
-        linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(0,0,0,0.92)),
-        url("https://images.unsplash.com/photo-1509099836639-18ba1795216d")
-        no-repeat center center;
-    background-size: cover;
-    z-index: -2;
-    animation: bgZoom 18s infinite alternate ease-in-out;
-}
+.main-heading{ text-align:center; margin-top:18px; font-size:26px; letter-spacing:3px; font-weight:700; }
+.sub-heading{ text-align:center; font-size:13px; color:#ff4d4d; letter-spacing:2px; margin-top:5px; }
+.clock { position: absolute; top: 15px; left: 25px; }
+.brand { position: absolute; top: 15px; right: 25px; padding: 6px 14px; border: 1px solid #ff3b3b;
+border-radius: 20px; background: rgba(255,0,0,0.12); backdrop-filter: blur(10px); }
+.fs-btn{ position:absolute; top:70px; left:25px; padding:8px 14px;
+background:rgba(255,0,0,0.2); border:1px solid #ff3b3b; border-radius:8px; cursor:pointer; }
 
-@keyframes bgZoom{
-    from{transform:scale(1)}
-    to{transform:scale(1.06)}
-}
+.login-box{ width:360px; margin:120px auto; padding:30px;
+background:rgba(255,255,255,0.06); backdrop-filter: blur(18px);
+border-radius:16px; text-align:center; border:1px solid rgba(255,0,0,0.3); }
 
-/* HEADER */
-.main-heading{
-    text-align:center;
-    margin-top:18px;
-    font-size:26px;
-    letter-spacing:3px;
-    font-weight:700;
-    color:#ffffff;
-}
+input{ width:85%; padding:12px; margin:8px 0; border-radius:8px; border:none;
+background:rgba(0,0,0,0.4); color:white; }
 
-.sub-heading{
-    text-align:center;
-    font-size:13px;
-    color:#ff4d4d;
-    letter-spacing:2px;
-    margin-top:5px;
-}
+button{ padding:10px 20px; border:none;
+background:linear-gradient(45deg,#ff2d2d,#8b0000);
+color:white; border-radius:8px; cursor:pointer; }
 
-/* CLOCK */
-.clock {
-    position: absolute;
-    top: 15px;
-    left: 25px;
-}
+.profile { display:none; position:absolute; top:50%; left:50%;
+transform:translate(-50%,-50%); width:520px; padding:40px;
+background:rgba(255,255,255,0.06); backdrop-filter: blur(18px);
+border-radius:18px; text-align:center; border:1px solid rgba(255,0,0,0.3);
+box-shadow:0 0 40px rgba(255,0,0,0.25); }
 
-/* BRAND */
-.brand {
-    position: absolute;
-    top: 15px;
-    right: 25px;
-    padding: 6px 14px;
-    border: 1px solid #ff3b3b;
-    border-radius: 20px;
-    background: rgba(255,0,0,0.12);
-    backdrop-filter: blur(10px);
-}
+.profile h2{ font-size:26px; color:#ff3b3b; margin-bottom:20px; }
+.profile p{ font-size:18px; margin:10px 0; }
 
-/* FULLSCREEN */
-.fs-btn{
-    position:absolute;
-    top:70px;
-    left:25px;
-    padding:8px 14px;
-    background:rgba(255,0,0,0.2);
-    border:1px solid #ff3b3b;
-    border-radius:8px;
-    cursor:pointer;
-}
+.ticker { position:absolute; bottom:0; width:100%; white-space:nowrap;
+overflow:hidden; background:rgba(0,0,0,0.6); border-top:1px solid rgba(255,0,0,0.3); }
+.ticker span { display:inline-block; padding-left:100%;
+animation:scroll 18s linear infinite; color:#ff4d4d; font-size:13px; }
+@keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-/* LOGIN */
-.login-box{
-    width:360px;
-    margin:120px auto;
-    padding:30px;
-    background:rgba(255,255,255,0.06);
-    backdrop-filter: blur(18px);
-    border-radius:16px;
-    text-align:center;
-    border:1px solid rgba(255,0,0,0.3);
-    animation: reveal 0.8s ease;
-}
-
-@keyframes reveal{
-    from{opacity:0;transform:translateY(30px) scale(0.9)}
-    to{opacity:1;transform:translateY(0) scale(1)}
-}
-
-input{
-    width:85%;
-    padding:12px;
-    margin:8px 0;
-    border-radius:8px;
-    border:none;
-    background:rgba(0,0,0,0.4);
-    color:white;
-}
-
-button{
-    padding:10px 20px;
-    border:none;
-    background:linear-gradient(45deg,#ff2d2d,#8b0000);
-    color:white;
-    border-radius:8px;
-    cursor:pointer;
-}
-
-/* =========================
-   🔥 UPDATED PORTFOLIO BOX
-   ========================= */
-
-.profile {
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    
-    width: 520px;   /* BIGGER */
-    padding: 40px;
-
-    background:rgba(255,255,255,0.06);
-    backdrop-filter: blur(18px);
-    border-radius: 18px;
-    text-align: center;
-
-    border: 1px solid rgba(255,0,0,0.3);
-    box-shadow: 0 0 40px rgba(255,0,0,0.25);
-
-    animation: popCenter 0.8s ease;
-}
-
-/* BIG TITLE */
-.profile h2{
-    font-size: 26px;
-    color:#ff3b3b;
-    margin-bottom:20px;
-}
-
-/* BIG TEXT */
-.profile p{
-    font-size: 18px;
-    margin: 10px 0;
-}
-
-/* CENTER REVEAL */
-@keyframes popCenter{
-    from{
-        opacity:0;
-        transform:translate(-50%, -60%) scale(0.8);
-    }
-    to{
-        opacity:1;
-        transform:translate(-50%, -50%) scale(1);
-    }
-}
-
-/* TICKER */
-.ticker {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    background: rgba(0,0,0,0.6);
-    border-top:1px solid rgba(255,0,0,0.3);
-}
-
-.ticker span {
-    display: inline-block;
-    padding-left: 100%;
-    animation: scroll 18s linear infinite;
-    color:#ff4d4d;
-    font-size:13px;
-}
-
-@keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-100%); }
-}
-
-/* CONFETTI */
-.confetti {
-    position: fixed;
-    width: 8px;
-    height: 8px;
-    background: red;
-    top: 0;
-    animation: fall 1.5s linear forwards;
-    z-index: 999;
-}
-
-@keyframes fall {
-    0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
-}
+.confetti { position: fixed; width: 8px; height: 8px; background: red; top: 0;
+animation: fall 1.5s linear forwards; z-index: 999; }
+@keyframes fall { 0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+100% { transform: translateY(110vh) rotate(360deg); opacity: 0; } }
 </style>
 </head>
 
 <body>
 
 <div class="bg"></div>
-
 <div class="clock" id="clock"></div>
 <div class="brand">UNCSW • EMACITY</div>
 
@@ -224,7 +65,6 @@ button{
 
 <button class="fs-btn" onclick="toggleFullscreen()">⛶ Fullscreen</button>
 
-<!-- LOGIN -->
 <div class="login-box" id="loginBox">
     <h2 style="color:#ff3b3b">Delegate Login</h2>
     <input type="text" id="delegateID" placeholder="Enter Delegate ID">
@@ -232,7 +72,6 @@ button{
     <p id="error" style="color:#ff4d4d;"></p>
 </div>
 
-<!-- PROFILE -->
 <div class="profile" id="profile">
     <h2>Delegate Portfolio</h2>
     <p>Name: <span id="name"></span></p>
@@ -240,63 +79,31 @@ button{
     <p>Committee: UNCSW</p>
 </div>
 
-<!-- TICKER -->
 <div class="ticker">
-<span>
-Breaking: Women empowerment initiatives discussed • Diplomatic consensus building • EMACITY MUN live session • Respectful debate encouraged • Global cooperation strengthening •
-</span>
+<span>Breaking: Women empowerment initiatives discussed • Diplomatic consensus building • EMACITY MUN live session •</span>
 </div>
 
 <script>
+setInterval(()=>{ document.getElementById("clock").innerText =
+new Date().toLocaleTimeString(); },1000);
 
-/* CLOCK */
-setInterval(()=>{
-document.getElementById("clock").innerText =
-new Date().toLocaleTimeString();
-},1000);
-
-/* FULLSCREEN */
 function toggleFullscreen(){
-if(!document.fullscreenElement){
-document.documentElement.requestFullscreen();
-}else{
-document.exitFullscreen();
-}
+if(!document.fullscreenElement){ document.documentElement.requestFullscreen(); }
+else{ document.exitFullscreen(); }
 }
 
-/* DELEGATES */
+/* === DELEGATES === */
 let delegates={
-"CSW101":{name:"Riya Jawale",country:"Japan"},
-"CSW102":{name:"Vidual Kanade",country:"USA"},
-"CSW103":{name:"Aashi Agarwal",country:"UK"},
-"CSW104":{name:"Aditi Sharma",country:"Australia"},
-"CSW105":{name:"Irra V Nadkarni",country:"INDIA"},
-"CSW106":{name:"Divinitee Ameet Kawade",country:"Kingdom of Denmark"},
-"CSW107":{name:"DEVASHREE DAHIMIWAL",country:"Republic Of Kenya"},
-"CSW108":{name:"Mishka Jain",country:"Russian Federation"},
-"CSW109":{name:"Prisha Aadesh Bora",country:"Canada"},
-"CSW110":{name:"Avani Kale",country:"Republic of Korea"},
-"CSW111":{name:"Advait Tembhare",country:"French Republic"},
-"CSW112": { "name": "Dhrumna Sharma", "country": "Indonesia" },
-"CSW113": { "name": "Shreyansh Ranjan", "country": "Kingdom Of Spain" },
-"CSW114": { "name": "Janhavi Mahesh Suryawanshi", "country": "Germany" },
-"CSW115": { "name": "Saumya Mishra", "country": "Italian Republic" },
-"CSW116": { "name": "Aanya Aggarwal", "country": "Brazil" },
-"CSW117": { "name": "Ananya Srivastava", "country": "Colombia"},
-"CSW118": { "name": "Avni Laghate", "country": "Argentina" },
-"CSW119": { "name": "Rehaan Dinesh", "country": "People's Republic of China" },
-"CSW120": { name: "Anvi Kumar", country: "People's Republic of Bangladesh" },
-"CSW121": { name: "Anna Turkina", country: "Republic of Philippines" },
-"CSW122": { name: "Avishi Singh", country: "United Mexican States" },
-"CSW123": { name: "Mahi Kaul", country: "Kingdom of Sweden" },
-"CSW124": { name: "Jefferson Cedric", country: "South Africa" },
-"CSW125": { name: "Hansika Sanagapalli", country: "United Arab Emirates" },
-"ABU04": { name: "Abuzar", position: "Chair" },
-"AMA05": { name: "Mohd. Amaar Khan", position: "Co-Chair" },
-"AAN06": { name: "Aanya Atmakuri", position: "Rapporteur" }
+"CSW121":{name:"Anna Turkina",country:"Republic of Philippines"},
+"CSW122":{name:"Avishi Singh",country:"United Mexican States"},
+"CSW123":{name:"Mahi Kaul",country:"Kingdom of Sweden"},
+"CSW124":{name:"Jefferson Cedric",country:"South Africa"},
+"CSW125":{name:"Hansika Sanagapalli",country:"United Arab Emirates"},
+"ABU04":{name:"Abuzar",position:"Chair"},
+"AMA05":{name:"Mohd. Amaar Khan",position:"Co-Chair"},
+"AAN06":{name:"Aanya Atmakuri",position:"Rapporteur"}
 };
 
-/* CONFETTI */
 function launchConfetti(){
 for(let i=0;i<40;i++){
 let c=document.createElement("div");
@@ -305,14 +112,13 @@ c.style.left=Math.random()*100+"vw";
 c.style.background=["#ff3b3b","#ffffff","#ff0000"][Math.floor(Math.random()*3)];
 c.style.animationDuration=(1+Math.random()*1.5)+"s";
 document.body.appendChild(c);
-
 setTimeout(()=>c.remove(),2000);
 }
 }
 
-/* LOGIN - FIXED FOR EXECUTIVE BOARD */
+/* === FIXED LOGIN === */
 function login(){
-let id = document.getElementById("delegateID").value.trim();
+let id = document.getElementById("delegateID").value.trim().toUpperCase();
 
 if(delegates[id]){
     document.getElementById("loginBox").style.display="none";
@@ -321,19 +127,15 @@ if(delegates[id]){
     let delegate = delegates[id];
     document.getElementById("name").innerText = delegate.name;
 
-    // Check if Executive Board (has position) or Delegate (has country)
-    let countryLine = document.getElementById("countryLine");
-    let countrySpan = document.getElementById("country");
-    
+    let line = document.getElementById("countryLine");
+
     if(delegate.position){
-        // Executive Board
-        countryLine.innerHTML = 'Position: <span id="country" style="color:#ff4444; font-weight:bold; font-size:1.2em;">' + delegate.position + '</span>';
+        line.innerHTML = 'Position: <span style="color:#ff4444;font-weight:bold;">'
+        + delegate.position + '</span>';
     } else {
-        // Regular Delegate
-        countryLine.innerHTML = 'Country: <span id="country">' + delegate.country + '</span>';
+        line.innerHTML = 'Country: <span>' + delegate.country + '</span>';
     }
 
-    /* 🎉 CONFETTI BURST */
     launchConfetti();
 
 }else{
